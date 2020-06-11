@@ -12,12 +12,14 @@ RUN apt update && apt install -y \
 	gcc g++ gfortran make cmake autoconf automake
 
 ENV TOPDIR=/root
-ENV	SCRIPT_DIR=${TOPDIR}/scripts \
+ENV SCRIPT_DIR=${TOPDIR}/scripts \
 	MODULE_DIR=${TOPDIR}/modules \
 	SOURCE_DIR=${TOPDIR}/sources
 
 COPY scripts ${SCRIPT_DIR}
 COPY modules ${MODULE_DIR}
 COPY sources ${SOURCE_DIR}
+
+RUN source ${SCRIPT_DIR}/*.sh
 
 CMD source /etc/profile.d/modules.sh && module use ${MODULE_DIR}; bash

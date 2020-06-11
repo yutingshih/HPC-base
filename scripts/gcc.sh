@@ -1,50 +1,47 @@
 #!/bin/bash
 # Author: Yuting Shih
 # Date: 2020-06-11 Thu.
-# Desc: Install GCC from source codes
+# Desc: install GCC from source codes
 
-function download() {
+function setup_gcc() {
 	MAJOR=${1}
 	MINOR=${2}
 	MICRO=${3}
 
 	APP_NAME=gcc-${MAJOR}.${MINOR}.${MICRO}
-	GCC_URL=https://bigsearcher.com/mirrors/gcc/releases/${APP_NAME}/${APP_NAME}.tar.gz
 	SRC_DIR=${SOURCE_DIR}/${APP_NAME}
 	BUILD_DIR=${SOURCE_DIR}/${APP_NAME}-build
-
-	mkdir -p ${TOPDIR} ${SRC_DIR} ${BUILD_DIR}
-	wget ${GCC_URL} -O - | tar -xzC ${TOPDIR}
+	GCC_URL=https://bigsearcher.com/mirrors/gcc/releases/${APP_NAME}/${APP_NAME}.tar.gz
 }
 
-function install() {
-	MAJOR=${1}
-	MINOR=${2}
-	MICRO=${3}
+function download_gcc() {
+	setup_gcc ${1} ${2} ${3}
+	wget ${GCC_URL} -O - | tar -xzC ${SOURCE_DIR}
+}
 
-	APP_NAME=gcc-${MAJOR}.${MINOR}.${MICRO}
-	SRC_DIR=${SOURCE_DIR}/${APP_NAME}
-	BUILD_DIR=${SOURCE_DIR}/${APP_NAME}-build
-	
-	mkdir -p ${TOPDIR} ${SRC_DIR} ${BUILD_DIR}
+function install_gcc() {
+	setup_gcc ${1} ${2} ${3}
 	unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE
 	
 	# install prerequisites
-	cd ${SRC_DIR} && ./contrib/download_prerequisites
+	cd ${SRC_DIR} && ${SRC_DIR}/contrib/download_prerequisites
 
 	# configure & compile
-	cd ${BUILD_DIR} && \
-	${SRC_DIR}/configure --prefix=/usr/local/${APP_NAME} --enable-threads=posix --disable-checking --disable-multilib && \
-	make -j $(nproc) && make install -j $(nproc)
+	module purge
+
+	mkdir ${BUILD_DIR} && cd ${BUILD_DIR}
+	${SRC_DIR}/configure --prefix=/usr/local/${APP_NAME} \
+		--enable-threads=posix --disable-checking --disable-multilib
+	make -j $(nproc)
+	make install -j $(nproc)
+	
 	cd ${TOPDIR}
 }
 
-# module purge
+# download_gcc 8 4 0
+# download_gcc 7 5 0
+# download_gcc 6 5 0
 
-# download 8 4 0
-# download 7 5 0
-# download 6 5 0
-
-# install 8 4 0
-# install 7 5 0
-# install 6 5 0
+# install_gcc 8 4 0
+# install_gcc 7 5 0
+# install_gcc 6 5 0
