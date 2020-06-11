@@ -20,6 +20,5 @@ COPY scripts ${SCRIPT_DIR}
 COPY modules ${MODULE_DIR}
 COPY sources ${SOURCE_DIR}
 
-RUN source ${SCRIPT_DIR}/*.sh
-
-CMD source /etc/profile.d/modules.sh && module use ${MODULE_DIR}; bash
+CMD source ${SCRIPT_DIR}/*.sh /etc/profile.d/modules.sh && \
+	module use ${MODULE_DIR}; bash

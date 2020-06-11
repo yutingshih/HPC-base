@@ -19,7 +19,13 @@ docker build -t tings0802/hpc-base .
 docker run -it tings0802/hpc-base
 ```
 
-Finally, source the scripts to install software in the container
+Install softwares in the container. Take GCC 8.4.0 for example: 
 ```bash
-source ./scripts/<script.sh>
+download_gcc 8 4 0
+install_gcc 8 4 0
+```
+
+Source the scripts if the commands above are not found
+```bash
+source ./scripts/*.sh
 ```
