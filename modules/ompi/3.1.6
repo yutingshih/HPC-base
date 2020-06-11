@@ -1,0 +1,8 @@
+#%Module
+module-whatis	"set up OpenMPI 3.1.6 environment"
+conflict 		ompi
+
+set				TOPDIR /root/sources/openmpi-3.1.6
+set-alias		mpicc $TOPDIR/bin/mpicc
+prepend-path	PATH $TOPDIR/bin
+prepend-path	LD_LIBRARY_PATH	$TOPDIR/lib
