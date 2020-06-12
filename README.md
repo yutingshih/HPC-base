@@ -2,10 +2,10 @@
 Dockerfiles of base images for 2020 APAC HPCAI Competition  
 
 ## Description
-`dockerfiles/`: dockerfiles of the base image  
-`scripts/`: shell scripts to install softwares  
-`modules/`: modulefiles to manage the system environment  
-`sources/`: source codes to be install  
+- `dockerfiles/`: dockerfiles of the base image  
+- `scripts/`: shell scripts to install softwares  
+- `modules/`: modulefiles to manage the system environment  
+- `sources/`: source codes to be install  
 
 ## Usage
 Clone this repository  
@@ -27,5 +27,7 @@ install_gcc 8 4 0
 
 Source the scripts if the commands above are not found  
 ```bash
-source ./scripts/*.sh
+eval ${SET_SCRIPT}
+# or
+for file in $(ls ${SCRIPT_DIR}/*.sh); do source $file; done
 ```
