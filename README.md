@@ -13,7 +13,7 @@ Clone this repository
 git clone https://github.com/tings0802/HPC-base.git
 ```
 
-Add scripts and modulefiles and source codes into the individual directory, and then enter the following command to create the container  
+Add scripts and modulefiles and source codes into the corresponding directories, and then create the container  
 ```bash
 docker build -t tings0802/hpc-base -f dockerfiles/Dockerfile .
 docker run -it tings0802/hpc-base
