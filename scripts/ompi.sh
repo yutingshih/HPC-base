@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: Yuting Shih
-# Date: 2020-06-10 Wed.
+# Date: 2020-06-12 Fri.
 # Desc: install OpenMPI of serveral versions
 
 function setup_ompi() {
@@ -33,11 +33,7 @@ function install_ompi() {
 	cd ${TOPDIR}
 }
 
-
-# download_ompi 4 0 3
-# download_ompi 3 1 6
-# download_ompi 3 0 6
-
-# install_ompi 4 0 3
-# install_ompi 3 1 6
-# install_ompi 3 0 6
+function build_ompi() {
+	download_ompi ${1} ${2} ${3}
+	install_ompi ${1} ${2} ${3}
+}

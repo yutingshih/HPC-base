@@ -38,10 +38,7 @@ function install_gcc() {
 	cd ${TOPDIR}
 }
 
-# download_gcc 8 4 0
-# download_gcc 7 5 0
-# download_gcc 6 5 0
-
-# install_gcc 8 4 0
-# install_gcc 7 5 0
-# install_gcc 6 5 0
+function build_gcc() {
+	download_gcc ${1} ${2} ${3}
+	install_gcc ${1} ${2} ${3}
+}
