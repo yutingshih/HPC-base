@@ -3,7 +3,7 @@
 # Date: 2020-06-11 Thu.
 # Desc: install GCC from source codes
 
-function setup_gcc() {
+function prepare_gcc() {
 	MAJOR=${1}
 	MINOR=${2}
 	MICRO=${3}
@@ -15,12 +15,12 @@ function setup_gcc() {
 }
 
 function download_gcc() {
-	setup_gcc ${1} ${2} ${3}
+	prepare_gcc ${1} ${2} ${3}
 	wget ${GCC_URL} -O - | tar -xzC ${SOURCE_DIR}
 }
 
 function install_gcc() {
-	setup_gcc ${1} ${2} ${3}
+	prepare_gcc ${1} ${2} ${3}
 	unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE
 	
 	# install prerequisites

@@ -3,7 +3,7 @@
 # Date: 2020-06-12 Fri.
 # Desc: install OpenMPI of serveral versions
 
-function setup_ompi() {
+function prepare_ompi() {
 	MAJOR=${1}
 	MINOR=${2}
 	MICRO=${3}
@@ -15,13 +15,13 @@ function setup_ompi() {
 }
 
 function download_ompi() {
-	setup_ompi ${1} ${2} ${3}
+	prepare_ompi ${1} ${2} ${3}
 	wget ${URL} -O - | tar -zxC ${SOURCE_DIR}
 	mv ${SOURCE_DIR}/${CODE_NAME} ${BUILD_DIR}
 }
 
 function install_ompi() {
-	setup_ompi ${1} ${2} ${3}
+	prepare_ompi ${1} ${2} ${3}
 	
 	module purge
 

@@ -19,10 +19,10 @@ docker build -t tings0802/hpc-base -f dockerfiles/Dockerfile .
 docker run -it tings0802/hpc-base
 ```
 
-Install softwares in the container. Take GCC 8.4.0 for example:  
+Install softwares in the container. For example:  
 ```bash
-download_gcc 8 4 0
-install_gcc 8 4 0
+build_gcc 8 4 0
+build_ompi 4 0 3
 ```
 
 Source the scripts if the commands above are not found  
