@@ -9,15 +9,14 @@ function prepare_ompi() {
 	MICRO=${3}
 
 	CODE_NAME=openmpi-${MAJOR}.${MINOR}.${MICRO}
-	BUILD_DIR=${SOURCE_DIR}/${CODE_NAME}-build
-	APP_DIR=${SOURCE_DIR}/${CODE_NAME}
+	BUILD_DIR=${SOURCE_DIR}/${CODE_NAME}
+	APP_DIR=${SOURCE_DIR}/ompi-${MAJOR}.${MINOR}.${MICRO}
 	URL=https://download.open-mpi.org/release/open-mpi/v${MAJOR}.${MINOR}/${CODE_NAME}.tar.gz
 }
 
 function download_ompi() {
 	prepare_ompi ${1} ${2} ${3}
 	wget ${URL} -O - | tar -zxC ${SOURCE_DIR}
-	mv ${SOURCE_DIR}/${CODE_NAME} ${BUILD_DIR}
 }
 
 function install_ompi() {
