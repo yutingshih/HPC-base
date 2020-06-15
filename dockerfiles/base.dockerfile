@@ -23,6 +23,6 @@ ENV SCRIPT_DIR=${TOPDIR}/scripts \
 COPY scripts ${SCRIPT_DIR}
 COPY modules ${MODULE_DIR}
 
-RUN printf "\n${SET_SCRIPT}\n${SET_MODULE}}" >> ~/.bashrc
+RUN printf "\n${SET_SCRIPT}\n${SET_MODULE}" >> ~/.bashrc
 
 CMD eval ${SET_MODULE}; bash
