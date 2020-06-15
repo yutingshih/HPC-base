@@ -18,11 +18,11 @@ ENV SCRIPT_DIR=${TOPDIR}/scripts \
 	MODULE_DIR=${TOPDIR}/modules \
 	SOURCE_DIR=${TOPDIR}/sources \
 	SET_SCRIPT='for file in $(ls ${SCRIPT_DIR}/*.sh); do source $file; done' \
-	SET_MODULE='source /etc/profile.d/modules.sh'
+	SET_MODULE='source /etc/profile.d/modules.sh && module use ${MODULE_DIR}'
 
 COPY scripts ${SCRIPT_DIR}
 COPY modules ${MODULE_DIR}
 
-RUN echo ${SET_SCRIPT} >> ~/.bashrc && echo ${SET_MODULE} >> ~/.bashrc
+RUN printf "\n${SET_SCRIPT}\n${SET_MODULE}}" >> ~/.bashrc
 
-CMD eval ${SET_MODULE} && module use ${MODULE_DIR}; bash
+CMD eval ${SET_MODULE}; bash
