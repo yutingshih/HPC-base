@@ -12,17 +12,19 @@
 # 	build	: build FFTW with GCC or ICC
 # 	rebuild	: remove FFTW and untar again
 # 	test	: test FFTW with its bench executable
+# 	help	: print this help message
 
 # options:
-# 	--gcc	: build FFTW with GCC compiler
-# 	--icc	: build FFTW with ICC compiler
-# 	--all	: build FFTW with both GCC and ICC compiler
+# 	--gcc	: build or test FFTW with GCC compiler
+# 	--icc	: build or test FFTW with ICC compiler
+# 	--all	: build or test FFTW with both GCC and ICC compiler
+# 	--help	: print this help message
 
 # Example:
 # 	source fftw.sh
 # 	fftw get
 #	fftw build --all
-#	fftw run --all
+#	fftw test --all 1024
 
 VER=3.3.8
 BASE=${TOPDIR:-${HOME}}
@@ -109,6 +111,33 @@ function testfftw() {
 	fi
 }
 
+function helpfftw() {
+	echo "
+Usage:
+	source fftw.sh
+	fftw <command> [option]
+
+commands:
+	get		: download and untar
+	build	: build FFTW with GCC or ICC
+	rebuild	: remove FFTW and untar again
+	test	: test FFTW with its bench executable
+	help	: print this help message
+
+options:
+	--gcc	: build or test FFTW with GCC compiler
+	--icc	: build or test FFTW with ICC compiler
+	--all	: build or test FFTW with both GCC and ICC compiler
+	--help	: print this help message
+	
+Example:
+ 	source fftw.sh
+ 	fftw get
+	fftw build --all
+	fftw test --all 1024
+	"
+}
+
 function fftw() {
 	CMD=${1:-'get'}
 	OPT=${2:-'--all'}
@@ -121,8 +150,10 @@ function fftw() {
 	elif [[ ${CMD} == build ]]; then
 		if [[ ${OPT} == '--gcc' || ${OPT} == '--all' ]]; then buildfftw ${GCC} ${GCC_FLAGS}; fi
 		if [[ ${OPT} == '--icc' || ${OPT} == '--all' ]]; then buildfftw ${ICC} ${ICC_FLAGS}; fi
-	elif [[ ${CMD} == run ]]; then
+	elif [[ ${CMD} == test ]]; then
 		testfftw ${OPT} ${VAL}
+	elif [[ ${CMD} == help || ${CMD} == --help ]]; then
+		helpfftw
 	else
 		echo "fftw: ${CMD}: command not found"
 		exit 1;
