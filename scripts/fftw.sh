@@ -92,16 +92,24 @@ function testfftw() {
 	if [[ ${OPT} == '--gcc' ]]; then
 		echo ${GCC_BENCH}
 		eval ${GCC_BENCH}
+		echo ${GCC_BENCH_NOSIMD}
+		eval ${GCC_BENCH_NOSIMD}
 	elif [[ ${OPT} == '--icc' ]]; then
-		module purge; module load impi
+		module purge; module load icc
 		echo ${ICC_BENCH}
 		eval ${ICC_BENCH}
+		echo ${ICC_BENCH_NOSIMD}
+		eval ${ICC_BENCH_NOSIMD}
 	elif [[ ${OPT} == '--all' ]]; then
-		module purge; module load impi
+		module purge; module load icc
 		echo ${GCC_BENCH}
 		eval ${GCC_BENCH}
+		echo ${GCC_BENCH_NOSIMD}
+		eval ${GCC_BENCH_NOSIMD}
 		echo ${ICC_BENCH}
 		eval ${ICC_BENCH}
+		echo ${ICC_BENCH_NOSIMD}
+		eval ${ICC_BENCH_NOSIMD}
 	else
 		echo "testfftw: ${OPT} option not found"
 		exit 1;
