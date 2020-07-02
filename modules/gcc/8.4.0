@@ -1,3 +1,4 @@
 #%Module
+conflict gcc
 module-whatis	"set up the GCC 8.4.0 environment"
 prepend-path	PATH /usr/local/gcc-8.4.0/bin

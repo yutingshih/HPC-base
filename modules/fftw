@@ -1,0 +1,8 @@
+#%Module
+
+set FFTW_DIR /root/fftw-build/3.3.8-shared-gcc840-avx2-broadwell
+set FFTW_DIR /root/fftw-build/3.3.8-shared-icc20-avx2-broadwell
+
+prepend-path CPLUS_INCLUDE_PATH $FFTW_DIR/include
+prepend-path LD_LIBRARY_PATH $FFTW_DIR/lib
+prepend-path LIBRARY_PATH $FFTW_DIR/lib

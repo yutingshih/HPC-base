@@ -1,3 +1,4 @@
 #%Module
+conflict gcc
 module-whatis	"set up the GCC 6.5.0 environment"
 prepend-path	PATH /usr/local/gcc-6.5.0/bin

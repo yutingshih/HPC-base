@@ -143,16 +143,16 @@ function fftw() {
 	OPT=${2:-'--all'}
 	VAL=${3}
 
-	if [[ ${CMD} == get ]]; then
+	if [[ ${CMD} == 'get' ]]; then
 		getfftw
-	elif [[ ${CMD} == rebuild ]]; then
+	elif [[ ${CMD} == 'rebuild' ]]; then
 		rebuildfftw
-	elif [[ ${CMD} == build ]]; then
+	elif [[ ${CMD} == 'build' ]]; then
 		if [[ ${OPT} == '--gcc' || ${OPT} == '--all' ]]; then buildfftw ${GCC} ${GCC_FLAGS}; fi
 		if [[ ${OPT} == '--icc' || ${OPT} == '--all' ]]; then buildfftw ${ICC} ${ICC_FLAGS}; fi
-	elif [[ ${CMD} == test ]]; then
+	elif [[ ${CMD} == 'test' ]]; then
 		testfftw ${OPT} ${VAL}
-	elif [[ ${CMD} == help || ${CMD} == --help ]]; then
+	elif [[ ${CMD} == 'help' || ${CMD} == --help ]]; then
 		helpfftw
 	else
 		echo "fftw: ${CMD}: command not found"
