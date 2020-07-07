@@ -149,6 +149,7 @@ function fftw() {
 		rebuildfftw
 	elif [[ ${CMD} == 'build' ]]; then
 		if [[ ${OPT} == '--gcc' || ${OPT} == '--all' ]]; then buildfftw ${GCC} ${GCC_FLAGS}; fi
+		wait
 		if [[ ${OPT} == '--icc' || ${OPT} == '--all' ]]; then buildfftw ${ICC} ${ICC_FLAGS}; fi
 	elif [[ ${CMD} == 'test' ]]; then
 		testfftw ${OPT} ${VAL}
